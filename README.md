@@ -21,7 +21,7 @@ Ne vous attendez tout de même pas à pouvoir lancer des dizaines de sorts de ni
 
 ### Erudition des classes (30)
 Petit composant qui tente d'équilibrer les connaissances des diverses classes.  
-Il diminue les connaissances du barde et augemente légèrement celles des mages, sorciers, clercs, paladins et druides.
+Il diminue les connaissances du barde et augmente légèrement celles des mages, sorciers, clercs, paladins et druides.
 
 ### Attaque par round bonus des compétences martiales (40)
 Ce composant modifie le nombre d'attaque supplémentaire dépendant du niveau et du nombre de points dans l'arme équipée.  
