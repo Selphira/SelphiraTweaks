@@ -1,0 +1,21 @@
+// Titres des composants
+@10 = ~Effet du charisme sur les prix~
+@11 = ~Effet de la reputation sur les prix~
+@20 = ~Progression des sorts des mages~
+@21 = ~Progression des sorts des sorciers~
+@22 = ~Progression des sorts des paladins~
+@23 = ~Progression des sorts des rodeurs~
+@24 = ~Progression des sorts des druides~
+@25 = ~Progression des sorts des bardes~
+@26 = ~Progression des sorts des pretres~
+@30 = ~Erudition des classes~
+@40 = ~Attaque par round bonus des compétences martiales~
+@50 = ~Adaptation des bonus d'experience des pièges~
+
+// Groupes de composants
+@200 = ~Progression des sorts~
+
+// Messages d'erreur
+@400 = ~Ce composant n'est pas disponible pour votre jeu~
+@401 = ~Fichier requis manquant~
+@402 = ~Ce composant requiert une installation prealable de TobEx.~
