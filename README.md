@@ -6,9 +6,9 @@ Petit mod sans prétention qui va modifier certains aspects du jeu.
 
 ### Effet du charisme sur les prix (10)
 Un très faible charisme va influence le prix des marchandises à la hausse, et un charisme au dessus de 20 continuera de faire baisser les prix.  
-La fouchette de prix varie désormais de +12% à -35%
+La fourchette de prix varie désormais de +12% à -35%
 
-### Effet de la reputation sur les prix (11)
+### Effet de la réputation sur les prix (11)
 Pourquoi les marchands prendraient le risque de se faire égorger ou piller en vendant des objet à 1000% de leur prix à des ordures reconnues ?   
 Ce composant réduit les prix pour les personnages ayant une très faible réputation, simulant la crainte qu'auraient les marchants à leur égart.  
 Le prix reste cependant augmenté pour les petits délinquants.
@@ -26,5 +26,5 @@ Il diminue les connaissances du barde et augmente légèrement celles des mages,
 ### Attaque par round bonus des compétences martiales (40)
 Ce composant modifie le nombre d'attaque supplémentaire dépendant du niveau et du nombre de points dans l'arme équipée.  
 
-### Adaptation des bonus d'experience des pièges (50)
+### Adaptation des bonus d'expérience des pièges (50)
 Ce composant adapte le gain d'expérience reçu lorsque vous désactivez un piège, crochetez une serrure ou apprenez un sort afin qu'il soit plus adapté à une mega-installation.
