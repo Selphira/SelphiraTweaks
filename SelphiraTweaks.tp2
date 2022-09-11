@@ -7,14 +7,13 @@ AUTO_TRA ~SelphiraTweaks/tra/%s~
 
 LANGUAGE ~Francais~ ~french~
          ~SelphiraTweaks/tra/french/setup.tra~
-		 
 
 ////////
 // Effet du charisme sur les prix
 ////////
 BEGIN @10
 DESIGNATED 10
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~CHRMODST.2DA~ @401
 
 COPY ~SelphiraTweaks/2da/CHRMODST.2DA~ ~override~
@@ -24,7 +23,7 @@ COPY ~SelphiraTweaks/2da/CHRMODST.2DA~ ~override~
 ////////
 BEGIN @11
 DESIGNATED 11
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~REPMODST.2DA~ @401
 
 COPY ~SelphiraTweaks/2da/REPMODST.2DA~ ~override~
@@ -35,7 +34,7 @@ COPY ~SelphiraTweaks/2da/REPMODST.2DA~ ~override~
 BEGIN @20
 GROUP @200
 DESIGNATED 20
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplwiz.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplwiz.2da~ ~override~
@@ -46,13 +45,13 @@ COPY ~SelphiraTweaks/2da/mxsplwiz.2da~ ~override~
 BEGIN @21
 GROUP @200
 DESIGNATED 21
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplsrc.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplsrc.2da~ ~override~
      ~SelphiraTweaks/2da/splsrckn.2da~ ~override~
-	 
-// Même table que le sorcier, avec un sort de moins à chaque fois
+
+// Mï¿½me table que le sorcier, avec un sort de moins ï¿½ chaque fois
 ACTION_IF FILE_EXISTS_IN_GAME mxspldd.2da THEN BEGIN
 	COPY_EXISTING ~mxsplsrc.2da~ ~override/mxspldd.2da~
 		FOR (row = 0 ; row < 50 ; ++row) BEGIN
@@ -71,7 +70,7 @@ END
 BEGIN @22
 GROUP @200
 DESIGNATED 22
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplpal.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplpal.2da~ ~override~
@@ -82,7 +81,7 @@ COPY ~SelphiraTweaks/2da/mxsplpal.2da~ ~override~
 BEGIN @23
 GROUP @200
 DESIGNATED 23
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplran.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplran.2da~ ~override~
@@ -93,7 +92,7 @@ COPY ~SelphiraTweaks/2da/mxsplran.2da~ ~override~
 BEGIN @24
 GROUP @200
 DESIGNATED 24
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxspldru.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxspldru.2da~ ~override~
@@ -104,7 +103,7 @@ COPY ~SelphiraTweaks/2da/mxspldru.2da~ ~override~
 BEGIN @25
 GROUP @200
 DESIGNATED 25
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplbrd.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplbrd.2da~ ~override~
@@ -131,27 +130,26 @@ REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~lore.2da~ @401
 COPY ~SelphiraTweaks/2da/lore.2da~ ~override~
 
 ////////
-// Attaque par round bonus des compétences martiales
+// Lancement des sorts depuis les parchemins au niveau (de mage) du personnage
+// Conflit avec cdtweaks(2170)
 ////////
-BEGIN @40
-DESIGNATED 40
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
-REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~WSPATCK.2DA~ @401
-REQUIRE_PREDICATE FILE_EXISTS ~TobEx_ini/TobExVer.txt~ @402
+BEGIN @40 DESIGNATED 40
 
-COPY "TobEx_ini/TobExTweak.ini" "TobEx_ini/TobExTweak.ini"
-  REPLACE_TEXTUALLY ~Engine:Weapon Specialisation Number of Attacks Mod=0~ ~Engine:Weapon Specialisation Number of Attacks Mod=1~
-
-COPY ~SelphiraTweaks/2da/WSPATCK.2DA~ ~override~
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  READ_SHORT 0x1c itemType
+  PATCH_IF itemType == 0xb BEGIN // only scrolls
+	  PATCH_FOR_EACH op IN 146 148 BEGIN
+	    LPF ALTER_EFFECT INT_VAR headers = 1 check_globals = 0 header_type = 3 match_opcode = op parameter1 = 0 silent = 1 END
+	  END
+  END
+  BUT_ONLY
 
 ////////
 // Adaptation des bonus d'experience
 ////////
 BEGIN @50
 DESIGNATED 50
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~xpbonus.2da~ @401
 
 COPY ~SelphiraTweaks/2da/xpbonus.2da~ ~override~
-
-
