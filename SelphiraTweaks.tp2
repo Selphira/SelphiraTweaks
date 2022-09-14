@@ -124,7 +124,7 @@ COPY ~SelphiraTweaks/2da/mxsplprs.2da~ ~override~
 ////////
 BEGIN @30
 DESIGNATED 30
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~lore.2da~ @401
 
 COPY ~SelphiraTweaks/2da/lore.2da~ ~override~
