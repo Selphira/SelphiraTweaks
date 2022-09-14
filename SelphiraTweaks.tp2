@@ -1,7 +1,7 @@
 BACKUP ~SelphiraTweaks/backup~
 AUTHOR ~Selphira (https://www.baldursgateworld.fr/lacouronne/members/selphira.html)~
 
-VERSION ~1.1~
+VERSION ~1.2~
 
 AUTO_TRA ~SelphiraTweaks/tra/%s~
 
@@ -114,7 +114,7 @@ COPY ~SelphiraTweaks/2da/mxsplbrd.2da~ ~override~
 BEGIN @26
 GROUP @200
 DESIGNATED 26
-REQUIRE_PREDICATE GAME_IS ~soa tob bgt~ @400
+REQUIRE_PREDICATE GAME_IS ~soa tob bgt bg2ee eet~ @400
 REQUIRE_PREDICATE FILE_EXISTS_IN_GAME ~mxsplprs.2da~ @401
 
 COPY ~SelphiraTweaks/2da/mxsplprs.2da~ ~override~
