@@ -23,9 +23,9 @@ Ne vous attendez tout de même pas à pouvoir lancer des dizaines de sorts de ni
 Petit composant qui tente d'équilibrer les connaissances des diverses classes.  
 Il diminue les connaissances du barde et augmente légèrement celles des mages, sorciers, clercs, paladins et druides.
 
-### Lancement des sorts depuis les parchemins au niveau (de mage) du personnage (40)
-Ce composant permet de lancer des sorts à partir de parchemins au niveau (de mage) de votre personnage, au lieu d'une valeur fixe.  
-C'est une variante du composant "Lancement des sorts depuis les parchemins (et autres objets) au niveau du personnage" de Tweaks Anthology, ce dernier affecte tous les objets et pas uniquement les parchemins.  
+### Lancement des sorts depuis les parchemins au niveau où on peut l'apprendre +1 (40)
+Ce composant permet de lancer des sorts à partir de parchemins au niveau où on peut l'apprendre +1.   
+Cela rend les parchemins très utiles à bas niveau, sans devenir des sorts supplémentaires à pleine puissance à haut niveau.
 
 ### Adaptation des bonus d'expérience des pièges (50)
 Ce composant adapte le gain d'expérience reçu lorsque vous désactivez un piège, crochetez une serrure ou apprenez un sort afin qu'il soit plus adapté à une mega-installation.

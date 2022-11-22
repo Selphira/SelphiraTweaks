@@ -135,13 +135,40 @@ COPY ~SelphiraTweaks/2da/lore.2da~ ~override~
 ////////
 BEGIN @40 DESIGNATED 40
 
+ACTION_DEFINE_ARRAY ~wizard_levels~ BEGIN 0 6 6 6 8 10 13 15 17 19 END
+ACTION_DEFINE_ARRAY ~priest_levels~ BEGIN 0 6 6 6 8 10 12 15 END
+
 COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
-  READ_SHORT 0x1c itemType
-  PATCH_IF itemType == 0xb BEGIN // only scrolls
-	  PATCH_FOR_EACH op IN 146 148 BEGIN
-	    LPF ALTER_EFFECT INT_VAR headers = 1 check_globals = 0 header_type = 3 match_opcode = op parameter1 = 0 silent = 1 END
-	  END
-  END
+	READ_SHORT 0x1c itemType
+	PATCH_IF itemType == 0xb BEGIN // only scrolls
+		GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x38
+		PHP_EACH ab_array AS int => ab_off BEGIN
+			READ_BYTE ab_off attack_type
+			PATCH_IF ~%attack_type%~ == 3 BEGIN
+				GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+				PHP_EACH fx_array AS int => fx_off BEGIN
+					READ_SHORT fx_off opcode
+					PATCH_IF opcode == 146 OR opcode == 148 BEGIN
+						READ_ASCII fx_off + 0x14 resource
+						PATCH_IF FILE_EXISTS_IN_GAME ~%resource%.spl~ BEGIN
+							SET level = 0
+							INNER_PATCH_FILE ~%resource%.spl~ BEGIN
+								READ_SHORT 0x1c spell_type
+								READ_LONG 0x34 spell_level
+								PATCH_IF spell_type == 1 BEGIN // wizard
+									SET level = $wizard_levels(~%spell_level%~)
+								END
+								ELSE PATCH_IF spell_type == 2 BEGIN // priest
+									SET level = $priest_levels(~%spell_level%~)
+								END
+							END
+							WRITE_LONG (fx_off + 0x4) level
+						END
+					END
+				END
+			END
+		END
+	END
   BUT_ONLY
 
 ////////
